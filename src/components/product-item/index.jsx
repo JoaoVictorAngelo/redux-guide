@@ -1,18 +1,25 @@
 import { BsCartPlus } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 
 // Components
 import CustomButton from "../custom-button/index";
 
 // Styles
 import * as Styles from "./styles";
+import { addProductToCart } from "../../redux/cart/actions";
 
 // Utilities
 
 const ProductItem = ({ product }) => {
+  const dispatch = useDispatch()
+
+  const handleProductsClick = () => {
+    dispatch(addProductToCart(product))
+  }
   return (
     <Styles.ProductContainer>
       <Styles.ProductImage imageUrl={product.imageUrl}>
-        <CustomButton startIcon={<BsCartPlus />}>
+        <CustomButton startIcon={<BsCartPlus />} onClick={handleProductsClick}>
           Adicionar ao carrinho
         </CustomButton>
       </Styles.ProductImage>
